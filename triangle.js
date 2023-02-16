@@ -21,15 +21,14 @@ export function getNormal( triangle ) {
 
 	const len = normal[ 0 ] * normal[ 0 ] + normal[ 1 ] * normal[ 1 ] + normal[ 2 ] * normal[ 2 ]
 
-	if ( len > 0 ) {
+	if ( len <= 0 ) {
 
-		normal[ 0 ] = normal[ 0 ] * 1 / Math.sqrt( len )
-		normal[ 1 ] = normal[ 1 ] * 1 / Math.sqrt( len )
-		normal[ 2 ] = normal[ 2 ] * 1 / Math.sqrt( len )
-
-		return normal
-	}
-	else {
 		return new Float32Array( [ 0, 0, 0 ] )
 	}
+
+	return new Float32Array( [
+		normal[ 0 ] * 1 / Math.sqrt( len ),
+		normal[ 1 ] * 1 / Math.sqrt( len ),
+		normal[ 2 ] * 1 / Math.sqrt( len )
+	] )
 }
